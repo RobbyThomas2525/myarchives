@@ -1,43 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>My Archive.org Collection</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>My Archives</title>
+
+    <!-- Optional styling -->
+    <style>
+        .archive-list {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .archive-list h3 {
+            margin: 0 0 5px 0;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>My Archive.org Uploads</h1>
-<div id="items"></div>
+    <h1>My Archive.org Lists</h1>
 
-<script>
-const USER = "YOUR_ARCHIVE_ORG_USERNAME";  
-const API = `https://archive.org/advancedsearch.php?q=uploader:${USER}&output=json`;
+    <!-- This is the container your script.js will fill -->
+    <div id="archiveLists">
+        <div id="listsContainer">Loading lists…</div>
+    </div>
 
-fetch(API)
-  .then(res => res.json())
-  .then(data => {
-    const docs = data.response.docs;
-    const container = document.getElementById("items");
-
-    docs.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "item";
-
-      const identifier = item.identifier;
-      const title = item.title || identifier;
-      const thumb = `https://archive.org/services/img/${identifier}`;
-
-      div.innerHTML = `
-        <img src="${thumb}" alt="${title}">
-        <h3>${title}</h3>
-        <a href="https://archive.org/details/${identifier}" target="_blank">View on Archive.org</a>
-      `;
-
-      container.appendChild(div);
-    });
-  });
-</script>
+    <!-- Load your JavaScript file -->
+    <script src="script.js"></script>
 
 </body>
 </html>
