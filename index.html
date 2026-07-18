@@ -13,7 +13,6 @@
     color: #000;
   }
 
-  /* Retro header */
   header {
     background: #003366;
     color: #fff;
@@ -54,7 +53,6 @@
     margin-bottom: 15px;
   }
 
-  /* Category boxes */
   .category {
     background: #f2f2f2;
     border: 2px solid #000;
@@ -72,11 +70,6 @@
   .item-title {
     font-weight: bold;
     font-size: 1.1rem;
-  }
-
-  .item-meta {
-    font-size: 0.85rem;
-    color: #444;
   }
 
   .btn {
@@ -107,104 +100,93 @@
 
 <header>
   <h1>Robby’s Old‑School Archive</h1>
-  <p>Auto‑updating Archive.org collection</p>
+  <p>Retro file collection</p>
 </header>
 
 <nav>
-  <a href="#downloads">Downloads</a>
-  <a href="#about">About</a>
-  <a href="#links">Links</a>
+  <a href="#games">Games</a>
+  <a href="#software">Software</a>
+  <a href="#music">Music</a>
+  <a href="#videos">Videos</a>
+  <a href="#documents">Documents</a>
+  <a href="#other">Other</a>
 </nav>
 
 <div class="container">
 
-  <section id="downloads">
-    <h2>Downloads (Auto‑Updated)</h2>
-    <div id="categories">Loading Archive.org items…</div>
+  <!-- CATEGORY: GAMES -->
+  <section id="games" class="category">
+    <h2>Games</h2>
+
+    <!-- Example item -->
+    <div class="item">
+      <div class="item-title">Game Title Here</div>
+      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.zip">Download</a>
+    </div>
+
+    <!-- Add more items manually -->
   </section>
 
-  <section id="about">
-    <h2>About</h2>
-    <p>This page automatically loads everything uploaded by <b>robbythomas2525</b> on Archive.org.</p>
-    <p>No updates needed — just upload more stuff and it appears here.</p>
+  <!-- CATEGORY: SOFTWARE -->
+  <section id="software" class="category">
+    <h2>Software</h2>
+
+    <div class="item">
+      <div class="item-title">Software Name Here</div>
+      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.zip">Download</a>
+    </div>
+
   </section>
 
-  <section id="links">
-    <h2>Links</h2>
-    <ul>
-      <li><a href="https://archive.org/details/@robbythomas2525">My Archive.org Profile</a></li>
-      <li><a href="https://github.com/RobbyThomas2525/myarchives">GitHub Repo</a></li>
-    </ul>
+  <!-- CATEGORY: MUSIC -->
+  <section id="music" class="category">
+    <h2>Music</h2>
+
+    <div class="item">
+      <div class="item-title">Music File Here</div>
+      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.mp3">Download</a>
+    </div>
+
+  </section>
+
+  <!-- CATEGORY: VIDEOS -->
+  <section id="videos" class="category">
+    <h2>Videos</h2>
+
+    <div class="item">
+      <div class="item-title">Video File Here</div>
+      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.mp4">Download</a>
+    </div>
+
+  </section>
+
+  <!-- CATEGORY: DOCUMENTS -->
+  <section id="documents" class="category">
+    <h2>Documents</h2>
+
+    <div class="item">
+      <div class="item-title">Document Here</div>
+      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.pdf">Download</a>
+    </div>
+
+  </section>
+
+  <!-- CATEGORY: OTHER -->
+  <section id="other" class="category">
+    <h2>Other</h2>
+
+    <div class="item">
+      <div class="item-title">Misc File</div>
+      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.zip">Download</a>
+    </div>
+
   </section>
 
 </div>
 
 <footer>
-  © 2026 Robby’s Archive — Powered by GitHub Pages
+  © 2026 Robby’s Archive — Retro Edition
 </footer>
-
-<script>
-// Fetch all uploads from Archive.org
-fetch("https://archive.org/advancedsearch.php?q=uploader:robbythomas2525&output=json")
-  .then(r => r.json())
-  .then(data => {
-    const docs = data.response.docs;
-
-    // Auto-categorize based on keywords in title
-    const categories = {
-      "Games": [],
-      "Software": [],
-      "Music": [],
-      "Videos": [],
-      "Documents": [],
-      "Other": []
-    };
-
-    docs.forEach(item => {
-      const title = item.title || item.identifier;
-      const id = item.identifier;
-      const date = item.publicdate?.substring(0, 10) || "Unknown";
-
-      let cat = "Other";
-      const t = title.toLowerCase();
-
-      if (t.includes("game") || t.includes("rom") || t.includes("iso")) cat = "Games";
-      else if (t.includes("exe") || t.includes("software") || t.includes("program")) cat = "Software";
-      else if (t.includes("mp3") || t.includes("flac") || t.includes("music")) cat = "Music";
-      else if (t.includes("mp4") || t.includes("video") || t.includes("movie")) cat = "Videos";
-      else if (t.includes("pdf") || t.includes("doc") || t.includes("text")) cat = "Documents";
-
-      categories[cat].push({ title, id, date });
-    });
-
-    const container = document.getElementById("categories");
-    container.innerHTML = "";
-
-    // Render categories
-    for (const cat in categories) {
-      if (categories[cat].length === 0) continue;
-
-      let html = `<div class="category"><h3>${cat}</h3>`;
-
-      categories[cat].forEach(item => {
-        html += `
-          <div class="item">
-            <div class="item-title">${item.title}</div>
-            <div class="item-meta">Uploaded: ${item.date}</div>
-            <a class="btn" href="https://archive.org/details/${item.id}" target="_blank">View</a>
-          </div>
-        `;
-      });
-
-      html += `</div>`;
-      container.innerHTML += html;
-    }
-  })
-  .catch(err => {
-    document.getElementById("categories").innerHTML =
-      "Error loading Archive.org items.";
-  });
-</script>
 
 </body>
 </html>
