@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Archives | A blog and downloads by Robby</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --bg: #f5f5f5;
+      --card-bg: #ffffff;
+      --text: #222222;
+      --muted: #777777;
+      --accent: #0077cc;
+      --accent-dark: #005999;
+      --border: #dddddd;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-dark);
+      text-decoration: underline;
+    }
+
+    header {
+      background: #111111;
+      color: #f0f0f0;
+      padding: 1.5rem 1rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .site-title {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    .site-subtitle {
+      margin: 0.25rem 0 0;
+      font-size: 0.95rem;
+      color: #bbbbbb;
+    }
+
+    nav {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      color: #f0f0f0;
+      text-decoration: none;
+      padding-bottom: 0.1rem;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav a.active {
+      border-color: var(--accent);
+    }
+
+    main {
+      padding: 1.5rem 1rem 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .post-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.1rem;
+    }
+
+    .post-title {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .post-meta {
+      margin-top: 0.25rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .post-excerpt {
+      margin-top: 0.6rem;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .post-actions {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border-radius: 4px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: #ffffff;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn:hover {
+      border-color: var(--accent-dark);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .downloads-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .download-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.75rem 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .download-name {
+      font-weight: 600;
+    }
+
+    .download-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer-links {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    @media (min-width: 700px) {
+      header {
+        padding: 1.8rem 0;
+      }
+      main {
+        padding: 2rem 0 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="site-title">My Archives</h1>
+      <p class="site-subtitle">A blog and download hub by Robby</p>
+
+      <nav>
+        <a href="#blog" class="active">Blog</a>
+        <a href="#downloads">Downloads</a>
+        <a href="#about">About</a>
+        <a href="#links">Links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Blog section -->
+      <section id="blog">
+        <h2 class="section-title">Latest posts</h2>
+        <div class="post-list">
+
+          <!-- Example post 1 -->
+          <article class="post-card">
+            <h3 class="post-title">Project X – first release and notes</h3>
+            <div class="post-meta">July 17, 2026 · 5 min read</div>
+            <p class="post-excerpt">
+              Quick overview of what’s in the first release, known issues, and how to install it.
+            </p>
+            <div class="post-actions">
+              <a class="btn-primary btn" href="#downloads">Jump to download</a>
+              <a class="btn" href="posts/project-x-notes.html">Read full post</a>
+            </div>
+          </article>
+
+          <!-- Example post 2 -->
+          <article class="post-card">
+            <h3 class="post-title">Old stuff archive – what’s inside</h3>
+            <div class="post-meta">July 10, 2026 · 3 min read</div>
+            <p class="post-excerpt">
+              A quick tour of the older files I’ve preserved here and how they’re organized.
+            </p>
+            <div class="post-actions">
+              <a class="btn-primary btn" href="#downloads">Browse downloads</a>
+            </div>
+          </article>
+
+          <!-- Add more posts here -->
+        </div>
+      </section>
+
+      <!-- Downloads section -->
+      <section id="downloads" style="margin-top: 2rem;">
+        <h2 class="section-title">Downloads</h2>
+        <p style="font-size:0.9rem; color:var(--muted);">
+          All files are hosted in this GitHub repository. If a link breaks, check the repo directly.
+        </p>
+
+        <div class="downloads-grid">
+
+          <!-- Example download item 1 -->
+          <div class="download-item">
+            <div class="download-name">Project X v1.0</div>
+            <div class="download-meta">ZIP · 12 MB · Updated July 17, 2026</div>
+            <p style="margin-top:0.4rem;">
+              First public build. Includes basic features and documentation.
+            </p>
+            <a class="btn-primary btn"
+               href="https://github.com/RobbyThomas2525/myarchives/raw/main/releases/project-x-v1.0.zip">
+              Download
+            </a>
+          </div>
+
+          <!-- Example download item 2 -->
+          <div class="download-item">
+            <div class="download-name">Old tools pack</div>
+            <div class="download-meta">ZIP · 45 MB · Legacy collection</div>
+            <p style="margin-top:0.4rem;">
+              A bundle of older utilities and experiments, kept here for nostalgia and reference.
+            </p>
+            <a class="btn btn-primary"
+               href="https://github.com/RobbyThomas2525/myarchives/raw/main/releases/old-tools-pack.zip">
+              Download
+            </a>
+          </div>
+
+          <!-- Add more download items as needed -->
+        </div>
+      </section>
+
+      <!-- About section -->
+      <section id="about" style="margin-top: 2rem;">
+        <h2 class="section-title">About</h2>
+        <p style="font-size:0.9rem; line-height:1.5;">
+          This page is a small archive of my projects, experiments, and random files I don’t want to lose.
+          I’m using GitHub Pages so everything stays versioned and easy to share.
+        </p>
+      </section>
+
+      <!-- Links section -->
+      <section id="links" style="margin-top: 2rem;">
+        <h2 class="section-title">Links</h2>
+        <ul style="font-size:0.9rem; line-height:1.6; padding-left:1.1rem;">
+          <li><strong>GitHub repo:</strong> <a href="https://github.com/RobbyThomas2525/myarchives">myarchives</a></li>
+          <li><strong>Profile:</strong> <a href="https://github.com/RobbyThomas2525">GitHub profile</a></li>
+          <!-- Add more external links here -->
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div>Powered by GitHub Pages</div>
+    <div class="footer-links">
+      <span>Last updated July 17, 2026</span>
+    </div>
+  </footer>
+</body>
+</html>
