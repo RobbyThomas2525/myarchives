@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Archive.org Collection</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>My Archive.org Uploads</h1>
+<div id="items"></div>
+
+<script>
+const USER = "YOUR_ARCHIVE_ORG_USERNAME";  
+const API = `https://archive.org/advancedsearch.php?q=uploader:${USER}&output=json`;
+
+fetch(API)
+  .then(res => res.json())
+  .then(data => {
+    const docs = data.response.docs;
+    const container = document.getElementById("items");
+
+    docs.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "item";
+
+      const identifier = item.identifier;
+      const title = item.title || identifier;
+      const thumb = `https://archive.org/services/img/${identifier}`;
+
+      div.innerHTML = `
+        <img src="${thumb}" alt="${title}">
+        <h3>${title}</h3>
+        <a href="https://archive.org/details/${identifier}" target="_blank">View on Archive.org</a>
+      `;
+
+      container.appendChild(div);
+    });
+  });
+</script>
+
+</body>
+</html>
