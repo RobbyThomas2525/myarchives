@@ -1,4 +1,7 @@
 /* --- Page Layout --- */
+img {
+    display: none !important;
+}
 
 body {
   margin: 0;
