@@ -1,32 +1,40 @@
-const USER = "robbythomas2525";
+async function loadArchiveLists() {
+    const username = "robbythomas2525";  
+    const container = document.getElementById("listsContainer");
 
-const API = `https://archive.org/advancedsearch.php?q=uploader:${USER}&output=json&rows=200`;
+    try {
+        // Step 1: Get user metadata (contains list IDs)
+        const metaUrl = `https://archive.org/metadata/@${username}`;
+        const metaRes = await fetch(metaUrl);
+        const metaData = await metaRes.json();
 
-fetch(API)
-  .then(res => res.json())
-  .then(data => {
-    const items = data.response.docs;
-    const container = document.getElementById("items");
+        if (!metaData.lists || metaData.lists.length === 0) {
+            container.innerHTML = "No lists found.";
+            return;
+        }
 
-    items.forEach(item => {
-      const id = item.identifier;
-      const title = item.title || id;
-      const thumb = `https://archive.org/services/img/${id}`;
+        // Step 2: Build HTML for each list
+        let html = "";
+        for (const list of metaData.lists) {
+            const listId = list.identifier;
+            const listTitle = list.title || listId;
 
-      const div = document.createElement("div");
-      div.className = "item";
+            html += `
+                <div class="archive-list">
+                    <h3>${listTitle}</h3>
+                    <a href="https://archive.org/details/${listId}" target="_blank">
+                        View on Archive.org
+                    </a>
+                </div>
+            `;
+        }
 
-      div.innerHTML = `
-        <img src="${thumb}" alt="${title}">
-        <div class="info">
-          <h3>${title}</h3>
-          <a href="https://archive.org/details/${id}" target="_blank">View on Archive.org</a>
-        </div>
-      `;
+        container.innerHTML = html;
 
-      container.appendChild(div);
-    });
-  })
-  .catch(err => {
-    console.error("Error loading Archive.org items:", err);
-  });
+    } catch (err) {
+        console.error(err);
+        container.innerHTML = "Failed to load lists.";
+    }
+}
+
+loadArchiveLists();
