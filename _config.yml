@@ -1,15 +1,9 @@
-title: Your Name
-email: you@example.com
-description: "A blog and portfolio"
-theme: jekyll-theme-cayman
+title: "myarchives"
+description: "my archive site"
+theme: jekyll-theme-hacker
+
 markdown: kramdown
 
-plugins:
-  - jekyll-feed
-
-collections:
-  posts:
-    output: true
-  portfolio:
-    output: true
-
+# Optional extras
+show_downloads: true
+google_analytics:
