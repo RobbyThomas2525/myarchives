@@ -12,81 +12,62 @@ fetch(API)
   })
   .catch(err => console.error("Error loading Archive.org items:", err));
 
-async function displayItems(list) {
+function displayItems(list) {
   const container = document.getElementById("items");
   container.innerHTML = "";
 
-  for (const item of list) {
+  list.forEach(item => {
     const id = item.identifier;
     const title = item.title || id;
     const thumb = `https://archive.org/services/img/${id}`;
     const category = item.mediatype || "unknown";
 
-    // Fetch metadata to get file list
-    const meta = await fetch(`https://archive.org/metadata/${id}`).then(r => r.json());
-    const files = meta.files || [];
-
-    // Pick the first real downloadable file
-    const file = files.find(f =>
-      !f.name.endsWith("_thumb.jpg") &&
-      !f.name.endsWith("_thumb.png") &&
-      !f.name.endsWith(".xml") &&
-      !f.name.endsWith(".json")
-    ) || files[0];
-
-    const downloadUrl = file
-      ? `https://archive.org/download/${id}/${file.name}`
-      : null;
-
     const div = document.createElement("div");
     div.className = "item";
 
     div.innerHTML = `
-      <img src="${thumb}" alt="${title}">
+      <img loading="lazy" src="${thumb}" alt="${title}">
       <div class="info">
         <h3>${title}</h3>
         <p class="category">${category}</p>
+
         <a href="https://archive.org/details/${id}" target="_blank">View</a>
-        ${downloadUrl ? `<a href="${downloadUrl}" class="download" target="_blank">Download</a>` : ""}
+
+        <!-- NEW: Download Page link -->
+        <a href="download.html?id=${id}" class="download" target="_blank">
+          Download Page
+        </a>
       </div>
     `;
 
     container.appendChild(div);
-  }
+  });
 }
 
 /* -------- SORTING -------- */
 
 function sortAZ() {
-  const sorted = [...items].sort((a, b) =>
+  displayItems([...items].sort((a, b) =>
     (a.title || a.identifier).localeCompare(b.title || b.identifier)
-  );
-  displayItems(sorted);
+  ));
 }
 
 function sortZA() {
-  const sorted = [...items].sort((a, b) =>
+  displayItems([...items].sort((a, b) =>
     (b.title || b.identifier).localeCompare(a.title || a.identifier)
-  );
-  displayItems(sorted);
+  ));
 }
 
 function sortNewest() {
-  const sorted = [...items].sort((a, b) => {
-    const da = new Date(a.publicdate || 0);
-    const db = new Date(b.publicdate || 0);
-    return db - da;
-  });
-  displayItems(sorted);
+  displayItems([...items].sort((a, b) =>
+    new Date(b.publicdate || 0) - new Date(a.publicdate || 0)
+  ));
 }
 
 function sortOldest() {
-  const sorted = [...items].sort((a, b) => {
-    const da = new Date(a.publicdate || 0);
-    const db = new Date(b.publicdate || 0);
-    return da - db;
-  });
-  displayItems(sorted);
+  displayItems([...items].sort((a, b) =>
+    new Date(a.publicdate || 0) - new Date(b.publicdate || 0)
+  ));
 }
 
 /* -------- CATEGORIES -------- */
@@ -95,9 +76,7 @@ function buildCategories(items) {
   const select = document.getElementById("categorySelect");
   const cats = new Set();
 
-  items.forEach(item => {
-    cats.add(item.mediatype || "unknown");
-  });
+  items.forEach(item => cats.add(item.mediatype || "unknown"));
 
   cats.forEach(cat => {
     const opt = document.createElement("option");
@@ -113,7 +92,6 @@ function filterCategory() {
   if (cat === "all") {
     displayItems(items);
   } else {
-    const filtered = items.filter(i => (i.mediatype || "unknown") === cat);
-    displayItems(filtered);
+    displayItems(items.filter(i => (i.mediatype || "unknown") === cat));
   }
 }
