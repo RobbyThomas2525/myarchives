@@ -18,6 +18,11 @@
   <button onclick="sortNewest()">Newest</button>
   <button onclick="sortOldest()">Oldest</button>
 
+  <select id="categorySelect" onchange="filterCategory()">
+    <option value="all">All Categories</option>
+  </select>
+</div>
+
   <!-- ⭐ NEW: Embedded Archive.org list -->
 <section>
   <h2>My Archive.org Uploads</h2>
@@ -28,12 +33,7 @@
     frameborder="0"
     allowfullscreen>
   </iframe>
-</section>
-
-  <select id="categorySelect" onchange="filterCategory()">
-    <option value="all">All Categories</option>
-  </select>
-</div>
+</section>  
 
 <main id="items"></main>
 
