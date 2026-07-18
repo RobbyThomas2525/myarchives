@@ -100,86 +100,33 @@
 
 <header>
   <h1>Robby’s Old‑School Archive</h1>
-  <p>Retro file collection</p>
+  <p>Retro auto‑updating Archive.org collection</p>
 </header>
 
 <nav>
-  <a href="#games">Games</a>
-  <a href="#software">Software</a>
-  <a href="#music">Music</a>
-  <a href="#videos">Videos</a>
-  <a href="#documents">Documents</a>
-  <a href="#other">Other</a>
+  <a href="#lists">My Lists</a>
+  <a href="#uploads">Uploads</a>
+  <a href="#about">About</a>
 </nav>
 
 <div class="container">
 
-  <!-- CATEGORY: GAMES -->
-  <section id="games" class="category">
-    <h2>Games</h2>
-
-    <!-- Example item -->
-    <div class="item">
-      <div class="item-title">Game Title Here</div>
-      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.zip">Download</a>
-    </div>
-
-    <!-- Add more items manually -->
+  <!-- LISTS SECTION -->
+  <section id="lists">
+    <h2>My Archive.org Lists</h2>
+    <div id="listsContainer">Loading lists…</div>
   </section>
 
-  <!-- CATEGORY: SOFTWARE -->
-  <section id="software" class="category">
-    <h2>Software</h2>
-
-    <div class="item">
-      <div class="item-title">Software Name Here</div>
-      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.zip">Download</a>
-    </div>
-
+  <!-- UPLOADS SECTION -->
+  <section id="uploads">
+    <h2>All Uploads</h2>
+    <div id="uploadsContainer">Loading uploads…</div>
   </section>
 
-  <!-- CATEGORY: MUSIC -->
-  <section id="music" class="category">
-    <h2>Music</h2>
-
-    <div class="item">
-      <div class="item-title">Music File Here</div>
-      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.mp3">Download</a>
-    </div>
-
-  </section>
-
-  <!-- CATEGORY: VIDEOS -->
-  <section id="videos" class="category">
-    <h2>Videos</h2>
-
-    <div class="item">
-      <div class="item-title">Video File Here</div>
-      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.mp4">Download</a>
-    </div>
-
-  </section>
-
-  <!-- CATEGORY: DOCUMENTS -->
-  <section id="documents" class="category">
-    <h2>Documents</h2>
-
-    <div class="item">
-      <div class="item-title">Document Here</div>
-      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.pdf">Download</a>
-    </div>
-
-  </section>
-
-  <!-- CATEGORY: OTHER -->
-  <section id="other" class="category">
-    <h2>Other</h2>
-
-    <div class="item">
-      <div class="item-title">Misc File</div>
-      <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.zip">Download</a>
-    </div>
-
+  <section id="about">
+    <h2>About</h2>
+    <p>This page automatically loads your Archive.org uploads AND your Archive.org lists.</p>
+    <p>No editing needed — just upload more stuff or update your lists on Archive.org.</p>
   </section>
 
 </div>
@@ -187,6 +134,52 @@
 <footer>
   © 2026 Robby’s Archive — Retro Edition
 </footer>
+
+<script>
+// Load uploads
+fetch("https://archive.org/advancedsearch.php?q=uploader:robbythomas2525&output=json")
+  .then(r => r.json())
+  .then(data => {
+    const docs = data.response.docs;
+    const uploadsDiv = document.getElementById("uploadsContainer");
+    uploadsDiv.innerHTML = "";
+
+    docs.forEach(item => {
+      const id = item.identifier;
+      const title = item.title || id;
+      const date = item.publicdate?.substring(0, 10) || "Unknown";
+
+      uploadsDiv.innerHTML += `
+        <div class="item">
+          <div class="item-title">${title}</div>
+          <div class="item-meta">Uploaded: ${date}</div>
+          <a class="btn" href="https://archive.org/details/${id}" target="_blank">View</a>
+        </div>
+      `;
+    });
+  });
+
+// Load lists
+fetch("https://archive.org/advancedsearch.php?q=list_creator:robbythomas2525&output=json")
+  .then(r => r.json())
+  .then(data => {
+    const lists = data.response.docs;
+    const listsDiv = document.getElementById("listsContainer");
+    listsDiv.innerHTML = "";
+
+    lists.forEach(list => {
+      const listId = list.identifier;
+      const listTitle = list.title || listId;
+
+      listsDiv.innerHTML += `
+        <div class="category">
+          <h3>${listTitle}</h3>
+          <a class="btn" href="https://archive.org/details/${listId}" target="_blank">Open List</a>
+        </div>
+      `;
+    });
+  });
+</script>
 
 </body>
 </html>
