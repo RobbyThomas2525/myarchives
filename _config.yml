@@ -1,5 +1,4 @@
-title: "My Midnight Site"
-description: "An example using jekyll-theme-midnight"
-theme: jekyll-theme-midnight
-
+title: "Slate Example"
+description: "Dark documentation-style theme"
+theme: jekyll-theme-slate
 markdown: kramdown
