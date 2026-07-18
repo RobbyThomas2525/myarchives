@@ -1,4 +1,4 @@
-theme: jekyll-theme-cayman
+remote_theme: sylhare/Type-on-Strap
 
 title: "Robby’s Archive"
 description: "Auto-updating Archive.org uploads and lists"
