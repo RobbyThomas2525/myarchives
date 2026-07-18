@@ -53,5 +53,47 @@
 <main id="items"></main>
 
 <script src="script.js"></script>
+<script>
+  function searchArchive() {
+    const q = document.getElementById("searchBar").value.trim();
+    const resultsBox = document.getElementById("searchResults");
+
+    if (q.length < 2) {
+      resultsBox.innerHTML = "";
+      return;
+    }
+
+    const url = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(q)}+AND+uploader:robbythomas2525&output=json&rows=50`;
+
+    fetch(url)
+      .then(r => r.json())
+      .then(data => {
+        const docs = data.response.docs || [];
+
+        if (docs.length === 0) {
+          resultsBox.innerHTML = "<p>No results found.</p>";
+          return;
+        }
+
+        let html = "<h3>Search Results</h3>";
+
+        docs.forEach(item => {
+          const id = item.identifier;
+          const title = item.title || id;
+
+          html += `
+            <p>
+              <strong>${title}</strong><br>
+              <a href="https://archive.org/details/${id}" target="_blank">View</a> |
+              <a href="download.html?id=${id}" target="_blank">Download Options</a>
+            </p>
+          `;
+        });
+
+        resultsBox.innerHTML = html;
+      });
+  }
+</script>
+  
 </body>
 </html>
