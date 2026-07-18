@@ -1,9 +1,15 @@
-remote_theme: sylhare/Type-on-Strap
-
-title: "Robby’s Archive"
-description: "Auto-updating Archive.org uploads and lists"
-
-# Optional but recommended
+title: Your Name
+email: you@example.com
+description: "A blog and portfolio"
+theme: jekyll-theme-cayman
 markdown: kramdown
+
 plugins:
-  - jekyll-remote-theme
+  - jekyll-feed
+
+collections:
+  posts:
+    output: true
+  portfolio:
+    output: true
+
