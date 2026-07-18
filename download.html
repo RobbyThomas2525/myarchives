@@ -2,32 +2,51 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Download File</title>
+<title>Download Options</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-  <h1>Download File</h1>
-  <p>Your file is ready below</p>
+  <h1>Download Options</h1>
+  <p>Select how you want to download your file</p>
 </header>
 
 <div id="downloadBox" style="text-align:center; padding:40px; font-size:1.3em;">
-  Loading download link...
+  Loading download options...
 </div>
 
 <script>
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
-  // Default extension (you can customize)
+  // Default extension guess
   let ext = "mp4";
 
-  const downloadUrl = `https://archive.org/download/${id}/${id}.${ext}`;
+  // Direct download URL
+  const directUrl = `https://archive.org/download/${id}/${id}.${ext}`;
+
+  // Torrent URL (Archive.org auto-generates these)
+  const torrentUrl = `https://archive.org/download/${id}/${id}_archive.torrent`;
 
   document.getElementById("downloadBox").innerHTML = `
     <p>Item: <strong>${id}</strong></p>
-    <a href="${downloadUrl}" class="download" target="_blank">Click here to download</a>
+
+    <a href="${directUrl}" class="download" target="_blank">
+      Direct Download
+    </a>
+
+    <br><br>
+
+    <a href="${torrentUrl}" class="download" target="_blank">
+      Download via Torrent
+    </a>
+
+    <br><br>
+
+    <p style="font-size:0.9em; color:#555;">
+      Torrent downloads require a torrent client (qBittorrent, Transmission, etc.)
+    </p>
   `;
 </script>
 
