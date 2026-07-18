@@ -18,6 +18,18 @@
   <button onclick="sortNewest()">Newest</button>
   <button onclick="sortOldest()">Oldest</button>
 
+  <!-- ⭐ NEW: Embedded Archive.org list -->
+<section>
+  <h2>My Archive.org Uploads</h2>
+  <iframe
+    src="https://archive.org/embed?collection=robbythomas2525&sort=-publicdate"
+    width="100%"
+    height="600"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</section>
+
   <select id="categorySelect" onchange="filterCategory()">
     <option value="all">All Categories</option>
   </select>
