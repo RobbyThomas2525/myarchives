@@ -2,3 +2,8 @@ remote_theme: sylhare/Type-on-Strap
 
 title: "Robby’s Archive"
 description: "Auto-updating Archive.org uploads and lists"
+
+# Optional but recommended
+markdown: kramdown
+plugins:
+  - jekyll-remote-theme
