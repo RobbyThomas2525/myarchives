@@ -23,6 +23,56 @@
   </select>
 </div>
 
+<!-- ⭐ ADVANCED SEARCH SCRIPT -->
+<script>
+function runAdvancedSearch() {
+  const title = document.getElementById("advTitle").value.trim();
+  const keywords = document.getElementById("advKeywords").value.trim();
+  const year = document.getElementById("advYear").value.trim();
+  const media = document.getElementById("advMedia").value;
+  const filetype = document.getElementById("advFileType").value;
+
+  let query = `uploader:robbythomas2525`;
+
+  if (title) query += ` AND title:${title}`;
+  if (keywords) query += ` AND (${keywords})`;
+  if (year) query += ` AND year:${year}`;
+  if (media) query += ` AND mediatype:${media}`;
+  if (filetype) query += ` AND format:${filetype}`;
+
+  const url = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(query)}&output=json&rows=100`;
+
+  fetch(url)
+    .then(r => r.json())
+    .then(data => {
+      const docs = data.response.docs || [];
+      const box = document.getElementById("advResults");
+
+      if (docs.length === 0) {
+        box.innerHTML = "<p>No results found.</p>";
+        return;
+      }
+
+      let html = "<h3>Advanced Search Results</h3>";
+
+      docs.forEach(item => {
+        const id = item.identifier;
+        const title = item.title || id;
+
+        html += `
+          <p>
+            <strong>${title}</strong><br>
+            <a href="https://archive.org/details/${id}" target="_blank">View</a> |
+            <a href="download.html?id=${id}" target="_blank">Download Options</a>
+          </p>
+        `;
+      });
+
+      box.innerHTML = html;
+    });
+}
+</script>  
+
     <!-- ⭐ NEW: SEARCH BAR -->
 <section>
   <h2>Search My Archive.org Uploads</h2>
