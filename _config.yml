@@ -1,5 +1,5 @@
-title: "myarchives"
-description: "my archive site"
-theme: jekyll-theme-hacker
+title: "My Midnight Site"
+description: "An example using jekyll-theme-midnight"
+theme: jekyll-theme-midnight
 
 markdown: kramdown
