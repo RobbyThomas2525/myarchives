@@ -9,7 +9,7 @@
 
 <header>
   <h1>Download Options</h1>
-  <p>Select how you want to download your file</p>
+  <p>Select a file to download</p>
 </header>
 
 <div id="downloadBox" style="text-align:center; padding:40px; font-size:1.3em;">
@@ -20,34 +20,60 @@
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
 
-  // Default extension guess
-  let ext = "mp4";
+  if (!id) {
+    document.getElementById("downloadBox").innerHTML = `
+      <p>No item ID provided.</p>
+      <p>Open this page from your main site using the "Download Options" button.</p>
+    `;
+  } else {
 
-  // Direct download URL
-  const directUrl = `https://archive.org/download/${id}/${id}.${ext}`;
+    fetch(`https://archive.org/metadata/${id}`)
+      .then(r => r.json())
+      .then(meta => {
+        const files = meta.files || [];
 
-  // Torrent URL (Archive.org auto-generates these)
-  const torrentUrl = `https://archive.org/download/${id}/${id}_archive.torrent`;
+        let html = `<p>Item: <strong>${id}</strong></p>`;
 
-  document.getElementById("downloadBox").innerHTML = `
-    <p>Item: <strong>${id}</strong></p>
+        // List all files
+        html += `<h3>Direct Downloads:</h3>`;
 
-    <a href="${directUrl}" class="download" target="_blank">
-      Direct Download
-    </a>
+        files.forEach(f => {
+          // Skip thumbnails and metadata junk
+          if (
+            f.name.endsWith("_thumb.jpg") ||
+            f.name.endsWith("_thumb.png") ||
+            f.name.endsWith(".xml") ||
+            f.name.endsWith(".json")
+          ) return;
 
-    <br><br>
+          const url = `https://archive.org/download/${id}/${f.name}`;
 
-    <a href="${torrentUrl}" class="download" target="_blank">
-      Download via Torrent
-    </a>
+          html += `
+            <p>
+              <a href="${url}" class="download" target="_blank">
+                ${f.name}
+              </a>
+            </p>
+          `;
+        });
 
-    <br><br>
+        // Torrent
+        const torrentUrl = `https://archive.org/download/${id}/${id}_archive.torrent`;
 
-    <p style="font-size:0.9em; color:#555;">
-      Torrent downloads require a torrent client (qBittorrent, Transmission, etc.)
-    </p>
-  `;
+        html += `
+          <br><br>
+          <h3>Torrent Download:</h3>
+          <a href="${torrentUrl}" class="download" target="_blank">
+            Download via Torrent
+          </a>
+          <p style="font-size:0.9em; color:#555;">
+            Requires a torrent client (qBittorrent, Transmission, etc.)
+          </p>
+        `;
+
+        document.getElementById("downloadBox").innerHTML = html;
+      });
+  }
 </script>
 
 </body>
