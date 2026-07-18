@@ -2,137 +2,145 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Robby’s Archive | Auto-Updating Downloads</title>
+<title>Robby’s Old‑School Archive</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <style>
   body {
     margin: 0;
-    font-family: system-ui, sans-serif;
-    background: #f5f5f5;
-    color: #222;
+    font-family: "Courier New", monospace;
+    background: #e0e0e0;
+    color: #000;
   }
+
+  /* Retro header */
   header {
-    background: #111;
-    color: #eee;
-    padding: 2rem 1rem;
+    background: #003366;
+    color: #fff;
+    padding: 20px;
+    border-bottom: 4px solid #000;
+    text-align: center;
   }
+
+  nav {
+    background: #cccccc;
+    padding: 10px;
+    border-bottom: 3px solid #000;
+    text-align: center;
+  }
+
+  nav a {
+    margin: 0 10px;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+  }
+
   .container {
     max-width: 900px;
-    margin: 0 auto;
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border: 3px solid #000;
   }
-  h1 {
-    margin: 0;
-    font-size: 2rem;
+
+  h2 {
+    border-bottom: 2px dashed #000;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
   }
-  nav {
-    margin-top: 1rem;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+
+  /* Category boxes */
+  .category {
+    background: #f2f2f2;
+    border: 2px solid #000;
+    padding: 10px;
+    margin-bottom: 20px;
   }
-  nav a {
-    color: #eee;
-    text-decoration: none;
-    padding-bottom: 0.2rem;
-    border-bottom: 2px solid transparent;
-  }
-  nav a:hover {
-    border-color: #0077cc;
-  }
-  main {
-    padding: 2rem 1rem;
-  }
-  .section-title {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-  .card {
+
+  .item {
+    border: 2px dotted #666;
+    padding: 10px;
+    margin: 10px 0;
     background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
   }
-  .card-title {
-    margin: 0;
-    font-size: 1.2rem;
+
+  .item-title {
+    font-weight: bold;
+    font-size: 1.1rem;
   }
-  .card-meta {
+
+  .item-meta {
     font-size: 0.85rem;
-    color: #777;
-    margin-top: 0.3rem;
+    color: #444;
   }
-  .card-desc {
-    margin-top: 0.6rem;
-    font-size: 0.95rem;
-  }
+
   .btn {
     display: inline-block;
-    margin-top: 0.8rem;
-    padding: 0.45rem 0.9rem;
-    background: #0077cc;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #003366;
     color: #fff;
-    border-radius: 4px;
     text-decoration: none;
+    border: 2px solid #000;
   }
+
   .btn:hover {
-    background: #005fa3;
+    background: #001a33;
   }
+
   footer {
     text-align: center;
-    padding: 1rem;
-    font-size: 0.85rem;
-    color: #777;
-    border-top: 1px solid #ddd;
+    padding: 10px;
+    margin-top: 20px;
+    background: #cccccc;
+    border-top: 3px solid #000;
   }
 </style>
 </head>
 
 <body>
+
 <header>
-  <div class="container">
-    <h1>Robby’s Archive</h1>
-    <p>Auto-updating downloads from Archive.org</p>
-    <nav>
-      <a href="#downloads">Downloads</a>
-      <a href="#about">About</a>
-      <a href="#links">Links</a>
-    </nav>
-  </div>
+  <h1>Robby’s Old‑School Archive</h1>
+  <p>Auto‑updating Archive.org collection</p>
 </header>
 
-<main>
-  <div class="container">
+<nav>
+  <a href="#downloads">Downloads</a>
+  <a href="#about">About</a>
+  <a href="#links">Links</a>
+</nav>
 
-    <!-- DOWNLOADS SECTION -->
-    <section id="downloads">
-      <h2 class="section-title">Archive.org Downloads</h2>
-      <div id="items">Loading your uploads…</div>
-    </section>
+<div class="container">
 
-    <!-- ABOUT -->
-    <section id="about" style="margin-top:2rem;">
-      <h2 class="section-title">About</h2>
-      <p>
-        This page automatically lists everything uploaded by
-        <strong>robbythomas2525</strong> on Archive.org.
-      </p>
-    </section>
+  <section id="downloads">
+    <h2>Downloads (Auto‑Updated)</h2>
+    <div id="categories">Loading Archive.org items…</div>
+  </section>
 
-    <!-- LINKS -->
-    <section id="links" style="margin-top:2rem;">
-      <h2 class="section-title">Links</h2>
-      <ul>
-        <li><a href="https://archive.org/details/@robbythomas2525">My Archive.org Profile</a></li>
-        <li><a href="https://github.com/RobbyThomas2525/myarchives">GitHub Repo</a></li>
-      </ul>
-    </section>
+  <section id="about">
+    <h2>About</h2>
+    <p>This page automatically loads everything uploaded by <b>robbythomas2525</b> on Archive.org.</p>
+    <p>No updates needed — just upload more stuff and it appears here.</p>
+  </section>
 
-  </div>
-</main>
+  <section id="links">
+    <h2>Links</h2>
+    <ul>
+      <li><a href="https://archive.org/details/@robbythomas2525">My Archive.org Profile</a></li>
+      <li><a href="https://github.com/RobbyThomas2525/myarchives">GitHub Repo</a></li>
+    </ul>
+  </section>
+
+</div>
 
 <footer>
-  Powered by GitHub Pages • Auto-updating via Archive.org API
+  © 2026 Robby’s Archive — Powered by GitHub Pages
 </footer>
 
 <script>
@@ -141,32 +149,59 @@ fetch("https://archive.org/advancedsearch.php?q=uploader:robbythomas2525&output=
   .then(r => r.json())
   .then(data => {
     const docs = data.response.docs;
-    const container = document.getElementById("items");
-    container.innerHTML = "";
+
+    // Auto-categorize based on keywords in title
+    const categories = {
+      "Games": [],
+      "Software": [],
+      "Music": [],
+      "Videos": [],
+      "Documents": [],
+      "Other": []
+    };
 
     docs.forEach(item => {
-      const identifier = item.identifier;
-      const title = item.title || identifier;
-      const date = item.publicdate?.substring(0, 10) || "Unknown date";
+      const title = item.title || item.identifier;
+      const id = item.identifier;
+      const date = item.publicdate?.substring(0, 10) || "Unknown";
 
-      // Direct download link
-      const download = `https://archive.org/download/${identifier}/${identifier}.zip`;
+      let cat = "Other";
+      const t = title.toLowerCase();
 
-      const card = `
-        <div class="card">
-          <h3 class="card-title">${title}</h3>
-          <div class="card-meta">Archive.org • ${date}</div>
-          <p class="card-desc">
-            Auto-generated entry for <strong>${identifier}</strong>.
-          </p>
-          <a class="btn" href="https://archive.org/details/${identifier}" target="_blank">View on Archive.org</a>
-        </div>
-      `;
-      container.innerHTML += card;
+      if (t.includes("game") || t.includes("rom") || t.includes("iso")) cat = "Games";
+      else if (t.includes("exe") || t.includes("software") || t.includes("program")) cat = "Software";
+      else if (t.includes("mp3") || t.includes("flac") || t.includes("music")) cat = "Music";
+      else if (t.includes("mp4") || t.includes("video") || t.includes("movie")) cat = "Videos";
+      else if (t.includes("pdf") || t.includes("doc") || t.includes("text")) cat = "Documents";
+
+      categories[cat].push({ title, id, date });
     });
+
+    const container = document.getElementById("categories");
+    container.innerHTML = "";
+
+    // Render categories
+    for (const cat in categories) {
+      if (categories[cat].length === 0) continue;
+
+      let html = `<div class="category"><h3>${cat}</h3>`;
+
+      categories[cat].forEach(item => {
+        html += `
+          <div class="item">
+            <div class="item-title">${item.title}</div>
+            <div class="item-meta">Uploaded: ${item.date}</div>
+            <a class="btn" href="https://archive.org/details/${item.id}" target="_blank">View</a>
+          </div>
+        `;
+      });
+
+      html += `</div>`;
+      container.innerHTML += html;
+    }
   })
   .catch(err => {
-    document.getElementById("items").innerHTML =
+    document.getElementById("categories").innerHTML =
       "Error loading Archive.org items.";
   });
 </script>
