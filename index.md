@@ -1,15 +1,30 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Archive.org Collection</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-# Welcome to My Archives
+<header>
+  <h1>My Archives</h1>
+  <p>Automatically updated from my Archive.org uploads</p>
+</header>
 
-This site is a collection of everything I want to store, save, or revisit later.
+<div id="controls">
+  <button onclick="sortAZ()">A → Z</button>
+  <button onclick="sortZA()">Z → A</button>
+  <button onclick="sortNewest()">Newest</button>
+  <button onclick="sortOldest()">Oldest</button>
 
-## Sections
+  <select id="categorySelect" onchange="filterCategory()">
+    <option value="all">All Categories</option>
+  </select>
+</div>
 
-- [Archive List](archive.md)
-- [About](about.md)
+<main id="items"></main>
 
-Feel free to explore.
+<script src="script.js"></script>
+</body>
+</html>
