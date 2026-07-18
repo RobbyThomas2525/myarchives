@@ -3,7 +3,3 @@ description: "my archive site"
 theme: jekyll-theme-hacker
 
 markdown: kramdown
-
-# Optional extras
-show_downloads: true
-google_analytics:
