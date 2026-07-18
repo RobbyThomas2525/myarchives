@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Download File</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Download File</h1>
+  <p>Your file is ready below</p>
+</header>
+
+<div id="downloadBox" style="text-align:center; padding:40px; font-size:1.3em;">
+  Loading download link...
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  // Default extension (you can customize)
+  let ext = "mp4";
+
+  const downloadUrl = `https://archive.org/download/${id}/${id}.${ext}`;
+
+  document.getElementById("downloadBox").innerHTML = `
+    <p>Item: <strong>${id}</strong></p>
+    <a href="${downloadUrl}" class="download" target="_blank">Click here to download</a>
+  `;
+</script>
+
+</body>
+</html>
