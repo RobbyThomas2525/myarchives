@@ -18,7 +18,12 @@
   <button onclick="sortNewest()">Newest</button>
   <button onclick="sortOldest()">Oldest</button>
 
-  <!-- ⭐ NEW: SEARCH BAR -->
+  <select id="categorySelect" onchange="filterCategory()">
+    <option value="all">All Categories</option>
+  </select>
+</div>
+
+    <!-- ⭐ NEW: SEARCH BAR -->
 <section>
   <h2>Search My Archive.org Uploads</h2>
 
@@ -32,11 +37,6 @@
 
   <div id="searchResults" style="margin-top: 20px;"></div>
 </section>
-
-  <select id="categorySelect" onchange="filterCategory()">
-    <option value="all">All Categories</option>
-  </select>
-</div>
 
   <!-- ⭐ NEW: Embedded Archive.org list -->
 <section>
