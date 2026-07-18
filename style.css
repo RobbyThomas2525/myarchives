@@ -111,3 +111,41 @@ header p {
   background: #0056c7;
 }
 
+/* ------------------------------
+   DARK MODE (default)
+--------------------------------*/
+
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+header {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.item {
+    background-color: #1e1e1e;
+    border-color: #333;
+    color: #e0e0e0;
+}
+
+a {
+    color: #80b3ff;
+}
+
+.download-btn {
+    background-color: #2196f3;
+    color: white;
+}
+
+.download-btn:hover {
+    background-color: #0b7dda;
+}
+
+footer {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
