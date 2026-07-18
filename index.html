@@ -12,18 +12,7 @@
   <p>Automatically updated from my Archive.org uploads</p>
 </header>
 
-<div id="controls">
-  <button onclick="sortAZ()">A → Z</button>
-  <button onclick="sortZA()">Z → A</button>
-  <button onclick="sortNewest()">Newest</button>
-  <button onclick="sortOldest()">Oldest</button>
-
-  <select id="categorySelect" onchange="filterCategory()">
-    <option value="software">Software</option>
-  </select>
-</div>
-
-<!-- ⭐ ADVANCED SEARCH SCRIPT -->
+  <!-- ⭐ ADVANCED SEARCH SCRIPT -->
 <script>
 function runAdvancedSearch() {
   const title = document.getElementById("advTitle").value.trim();
@@ -71,7 +60,17 @@ function runAdvancedSearch() {
       box.innerHTML = html;
     });
 }
-</script>  
+
+<div id="controls">
+  <button onclick="sortAZ()">A → Z</button>
+  <button onclick="sortZA()">Z → A</button>
+  <button onclick="sortNewest()">Newest</button>
+  <button onclick="sortOldest()">Oldest</button>
+
+  <select id="categorySelect" onchange="filterCategory()">
+    <option value="software">Software</option>
+  </select>
+</div>
 
     <!-- ⭐ NEW: SEARCH BAR -->
 <section>
