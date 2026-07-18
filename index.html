@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>My Archives | Robby</title>
+<title>Robby’s Archive | Auto-Updating Downloads</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   body {
@@ -91,8 +91,8 @@
 <body>
 <header>
   <div class="container">
-    <h1>My Archives</h1>
-    <p>A blog and download hub by Robby</p>
+    <h1>Robby’s Archive</h1>
+    <p>Auto-updating downloads from Archive.org</p>
     <nav>
       <a href="#downloads">Downloads</a>
       <a href="#about">About</a>
@@ -106,26 +106,16 @@
 
     <!-- DOWNLOADS SECTION -->
     <section id="downloads">
-      <h2 class="section-title">Downloads</h2>
-
-      <!-- Example item -->
-      <div class="card">
-        <h3 class="card-title">Example File</h3>
-        <div class="card-meta">ZIP • 120 MB</div>
-        <p class="card-desc">
-          Description of the file goes here.
-        </p>
-        <a class="btn" href="https://archive.org/download/YOURFILE/YOURFILE.zip">Download</a>
-      </div>
-
-      <!-- Duplicate the block above for more downloads -->
+      <h2 class="section-title">Archive.org Downloads</h2>
+      <div id="items">Loading your uploads…</div>
     </section>
 
     <!-- ABOUT -->
     <section id="about" style="margin-top:2rem;">
       <h2 class="section-title">About</h2>
       <p>
-        This page is inspired by Silent’s Blog but customized for my archives and downloads.
+        This page automatically lists everything uploaded by
+        <strong>robbythomas2525</strong> on Archive.org.
       </p>
     </section>
 
@@ -133,7 +123,7 @@
     <section id="links" style="margin-top:2rem;">
       <h2 class="section-title">Links</h2>
       <ul>
-        <li><a href="https://archive.org/details/@YOURUSERNAME">My Archive.org Profile</a></li>
+        <li><a href="https://archive.org/details/@robbythomas2525">My Archive.org Profile</a></li>
         <li><a href="https://github.com/RobbyThomas2525/myarchives">GitHub Repo</a></li>
       </ul>
     </section>
@@ -142,8 +132,44 @@
 </main>
 
 <footer>
-  Powered by GitHub Pages • Updated 2026
+  Powered by GitHub Pages • Auto-updating via Archive.org API
 </footer>
+
+<script>
+// Fetch all uploads from Archive.org
+fetch("https://archive.org/advancedsearch.php?q=uploader:robbythomas2525&output=json")
+  .then(r => r.json())
+  .then(data => {
+    const docs = data.response.docs;
+    const container = document.getElementById("items");
+    container.innerHTML = "";
+
+    docs.forEach(item => {
+      const identifier = item.identifier;
+      const title = item.title || identifier;
+      const date = item.publicdate?.substring(0, 10) || "Unknown date";
+
+      // Direct download link
+      const download = `https://archive.org/download/${identifier}/${identifier}.zip`;
+
+      const card = `
+        <div class="card">
+          <h3 class="card-title">${title}</h3>
+          <div class="card-meta">Archive.org • ${date}</div>
+          <p class="card-desc">
+            Auto-generated entry for <strong>${identifier}</strong>.
+          </p>
+          <a class="btn" href="https://archive.org/details/${identifier}" target="_blank">View on Archive.org</a>
+        </div>
+      `;
+      container.innerHTML += card;
+    });
+  })
+  .catch(err => {
+    document.getElementById("items").innerHTML =
+      "Error loading Archive.org items.";
+  });
+</script>
 
 </body>
 </html>
