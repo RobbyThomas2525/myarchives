@@ -1,4 +1,4 @@
-const USER = "robbythomas2525";
+const USER = "robbythomas2525"; 
 const API = `https://archive.org/advancedsearch.php?q=uploader:${USER}&output=json&rows=500`;
 
 let items = [];
@@ -19,23 +19,22 @@ function displayItems(list) {
   list.forEach(item => {
     const id = item.identifier;
     const title = item.title || id;
-    const thumb = `https://archive.org/services/img/${id}`;
     const category = item.mediatype || "unknown";
 
     const div = document.createElement("div");
     div.className = "item";
 
+    // Thumbnail removed
     div.innerHTML = `
-      <img loading="lazy" src="${thumb}" alt="${title}">
       <div class="info">
         <h3>${title}</h3>
         <p class="category">${category}</p>
 
         <a href="https://archive.org/details/${id}" target="_blank">View</a>
 
-        <!-- NEW: Download Page link -->
+        <!-- Download page only -->
         <a href="download.html?id=${id}" class="download" target="_blank">
-          Download Page
+          Download Options
         </a>
       </div>
     `;
