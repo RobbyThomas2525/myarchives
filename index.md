@@ -1,6 +1,6 @@
 ---
-layout: default
-title: Robby’s Archive
+layout: home
+title: "Robby’s Archive"
 ---
 
 <h1>Robby’s Archive</h1>
